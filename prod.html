@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Products - My Portfolio</title>
   <link rel="stylesheet" href="style.css"/>
-  
+  <script>
+    if (localStorage.getItem('isLoggedIn') !== 'true') {
+      window.location.href = 'prod.html';
+    }
+  </script>
   <style>
     .products-section {
       max-width: 1000px;
