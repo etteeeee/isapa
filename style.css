@@ -1,0 +1,163 @@
+/* OUTLAST TRIALS HOMEPAGE STYLE */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Courier New', Courier, monospace;
+  color: #f0f0f0;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+body {
+  font-family: 'Courier New', Courier, monospace;
+  color: #f0f0f0;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: url('trailer.mp4') no-repeat center center fixed;
+  background-size: cover;
+}
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.4);
+}
+
+
+
+a {
+  color: #f0f0f0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: red;
+}
+
+.navbar {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  display: flex;
+  gap: 30px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  z-index: 10;
+}
+
+.navbar a {
+  color: #f0f0f0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: red;
+}
+.navbar {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.logo img {
+  width: 30px;
+}
+
+.logo-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.red {
+  color: red;
+}
+
+.teaser {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 5;
+}
+
+.teaser-btn {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: color 0.3s ease;
+}
+
+.teaser-btn:hover {
+  color: red;
+}
+
+.title {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 2px;
+  color: white;
+  text-shadow: 0 0 10px black;
+  z-index: 5;
+}
+
+.platforms {
+  position: absolute;
+  bottom: 20px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 5;
+}
+
+.platforms span {
+  color: red;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.platforms img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease;
+}
+
+.platforms img:hover {
+  transform: scale(1.2);
+}

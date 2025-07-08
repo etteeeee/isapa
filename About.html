@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - My Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    if (localStorage.getItem('isLoggedIn') !== 'true') {
+      window.location.href = 'index.html';
+    }
+  </script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-y: auto;
+      font-family: monospace;
+      color: #f0f0f0;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: -1;
+    }
+
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .navbar {
+		position: fixed;
+		top: 20px;
+		left: 50%;
+		transform: translateX(-50%);
+		display: flex;
+		gap: 15px;
+		z-index: 10;
+	}
+
+	.teaser-btn {
+		background: none;
+		border: 2px solid red;
+		color: #ccc;
+		font-size: 1.1rem;
+		padding: 10px 25px;
+		cursor: pointer;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+		min-width: 180px;
+		text-align: center;
+		font-weight: bold;
+	}
+
+	.teaser-btn:hover {
+		background: red;
+		color: white;
+		transform: scale(1.05);
+	}
+
+
+
+    .red {
+      color: red;
+    }
+
+    .about-section {
+      max-width: 800px;
+      margin: 140px auto 100px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .about-section h2 {
+      color: red;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    .about-section p {
+      margin-bottom: 1.2rem;
+      line-height: 1.6;
+    }
+
+    ul.tools-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 1rem;
+    }
+
+    ul.tools-list li::before {
+      content: "🛠 ";
+      color: red;
+    }
+
+    .quote {
+      font-style: italic;
+      color: #ccc;
+      margin-top: 2rem;
+      border-left: 2px solid red;
+      padding-left: 1rem;
+    }
+
+    a {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <video autoplay muted loop id="bg-video">
+    <source src="trailer.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <a href="home.html">
+      <button class="teaser-btn"><span class="red">[</span> Home <span class="red">]</span></button>
+    </a>
+    <a href="About.html">
+      <button class="teaser-btn"><span class="red">[</span> About <span class="red">]</span></button>
+    </a>
+    <a href="prod.html">
+      <button class="teaser-btn"><span class="red">[</span> Products <span class="red">]</span></button>
+    </a>
+    <a href="index.html">
+      <button class="teaser-btn"><span class="red">[</span> Logout <span class="red">]</span></button>
+    </a>
+  </div>
+
+  <!-- About Section -->
+  <section class="about-section">
+    <h2>Felix Trials: The Origin</h2>
+    <p><strong>"Felix Trials"</strong> is a digital horror-themed showcase of creativity and survival. This portfolio is the result of countless hours of testing, failing, and overcoming — each project a scar, each line of code a memory etched into digital flesh.</p>
+
+    <h2>Mission</h2>
+    <p>My mission is to design immersive, eerie, and emotionally resonant web experiences that break free from boring templates and challenge what a portfolio can be.</p>
+
+    <h2>Behind the Mask</h2>
+    <p><strong>Name:</strong> Lester M. Felix<br>
+    <strong>Role:</strong> Survivor of Digital Trials<br>
+    <strong>Skills:</strong>UI/UX Design, Horror Aesthetics</p>
+
+    <h2>Tools of Survival</h2>
+    <ul class="tools-list">
+      <li>HTML5 – My foundation</li>
+      <li>CSS3 – For visual deception</li>
+      <li>JavaScript – To add life to horror</li>
+      <li>Photoshop – To manipulate reality</li>
+      <li>GitHub – For tracking my escape routes</li>
+    </ul>
+
+    <h2>Inspirations</h2>
+    <p>Inspired by The Outlast Trials, Silent Hill, Limbo, and artists like H.R. Giger, my design choices are born from shadows and sharpened by tension.</p>
+
+    <h2>Psych Report</h2>
+    <div class="quote">
+      "Subject shows unusual resilience under visual stress. Output: consistently creative. – Observer #042"
+    </div>
+
+    <h2>Contact</h2>
+    <p>Need something done... in the dark?<br>Email: <a href="mailto:felix@thetrials.com">felix@thetrials.com</a></p>
+  </section>
+</body>
+</html>

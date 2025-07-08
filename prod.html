@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products - My Portfolio</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script>
+    if (localStorage.getItem('isLoggedIn') !== 'true') {
+      window.location.href = 'index.html';
+    }
+  </script>
+  <style>
+    .products-section {
+      max-width: 1000px;
+      margin: 100px auto;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 2rem;
+    }
+
+    .product-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid red;
+      color: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .product-item:hover {
+      transform: scale(2);
+      box-shadow: 0 0 15px red;
+      z-index: 10;
+    }
+
+    .product-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .product-price {
+      color: red;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(3px);
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #111;
+      padding: 2rem;
+      border: 2px solid red;
+      border-radius: 10px;
+      text-align: center;
+      color: white;
+      max-width: 400px;
+      width: 90%;
+      animation: pop 0.3s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .payment-options button {
+      background: black;
+      color: white;
+      border: 1px solid red;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      font-weight: bold;
+    }
+
+    .payment-options button:hover {
+      background: red;
+      color: black;
+    }
+
+    .close-modal {
+      background: transparent;
+      border: 1px solid gray;
+      color: gray;
+      padding: 5px 15px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .close-modal:hover {
+      color: white;
+      border-color: white;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="trailer.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <section class="products-section">
+    <h2>Skin Packs</h2>
+    <p>Check out these custom skins available for purchase.</p>
+
+    <div class="product-list">
+      <div class="product-item">
+        <img src="pack1.jpg" alt="Skin Pack 1" />
+        <p class="product-price">₱429</p>
+      </div>
+      <div class="product-item">
+        <img src="pack2.jpg" alt="Skin Pack 2" />
+        <p class="product-price">₱249</p>
+      </div>
+      <div class="product-item">
+        <img src="pack3.webp" alt="Skin Pack 3" />
+        <p class="product-price">₱249</p>
+      </div>
+      <div class="product-item">
+        <img src="pack4.webp" alt="Skin Pack 4" />
+        <p class="product-price">₱249</p>
+      </div>
+    </div>
+  </section>
+
+  <main class="teaser">
+    <a href="home.html">
+      <button class="teaser-btn"><span class="red">[</span> View Home <span class="red">]</span></button>
+    </a>
+    <a href="About.html">
+      <button class="teaser-btn"><span class="red">[</span> View About <span class="red">]</span></button>
+    </a>
+    <a href="prod.html">
+      <button class="teaser-btn"><span class="red">[</span> View Products <span class="red">]</span></button>
+    </a>
+    <a href="index.html">
+      <button class="teaser-btn"><span class="red">[</span> Logout <span class="red">]</span></button>
+    </a>
+  </main>
+
+  <!-- Payment Modal -->
+  <div id="paymentModal" class="modal">
+    <div class="modal-content">
+      <h3>Select Payment Method</h3>
+      <div class="payment-options">
+        <button onclick="selectPayment('GCash')">GCash</button>
+        <button onclick="selectPayment('PayPal')">PayPal</button>
+        <button onclick="selectPayment('Credit Card')">Credit Card</button>
+      </div>
+      <button class="close-modal" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div id="checkoutModal" class="modal">
+    <div class="modal-content">
+      <h3>Checkout Summary</h3>
+      <p id="checkoutText"></p>
+      <button id="confirmBtn" class="teaser-btn">Confirm Purchase</button>
+      <button class="close-modal" onclick="closeCheckout()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Thank You Modal -->
+  <div id="thankYouModal" class="modal">
+    <div class="modal-content">
+      <h3>✅ Payment Successful</h3>
+      <p>Thank you for your purchase!</p>
+      <button class="close-modal" onclick="closeThankYou()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("paymentModal");
+    const checkoutModal = document.getElementById("checkoutModal");
+    const thankYouModal = document.getElementById("thankYouModal");
+    const checkoutText = document.getElementById("checkoutText");
+    const confirmBtn = document.getElementById("confirmBtn");
+    const productItems = document.querySelectorAll(".product-item");
+
+    let selectedProduct = "";
+
+    productItems.forEach(item => {
+      item.addEventListener("click", () => {
+        selectedProduct = item.querySelector("img").alt;
+        modal.style.display = "flex";
+      });
+    });
+
+    function closeModal() {
+      modal.style.display = "none";
+    }
+
+    function closeCheckout() {
+      checkoutModal.style.display = "none";
+    }
+
+    function closeThankYou() {
+      thankYouModal.style.display = "none";
+    }
+
+    function selectPayment(method) {
+      closeModal();
+      checkoutText.innerHTML = `
+        <strong>Product:</strong> ${selectedProduct}<br>
+        <strong>Payment Method:</strong> ${method}<br>
+        <strong>Total:</strong> ₱249
+      `;
+      checkoutModal.style.display = "flex";
+
+      confirmBtn.onclick = () => {
+        checkoutModal.style.display = "none";
+        thankYouModal.style.display = "flex";
+      };
+    }
+
+    window.addEventListener("click", e => {
+      if (e.target === modal) closeModal();
+      if (e.target === checkoutModal) closeCheckout();
+      if (e.target === thankYouModal) closeThankYou();
+    });
+  </script>
+</body>
+</html>
